@@ -35,7 +35,39 @@ The Mongoose layer adds a schema to MongoDB, which makes it much easier to handl
 Mongoose is an ORM-like tool for MongoDB. Mongoose provides a straight-forward, schema-based solution to model your application data. It includes built-in type casting, validation, query building, business logic hooks and more, out of the box. Mongoose adds another layer of robustness on top of MongoDB. Write less code, easier to read code (object modeling) and schema validation. MongoDB is schema-less and Mongoose adds schemas. This might seem counterintuitive at first... but Real life data has (often) structure and (often) types.
 
 ## Explain, and demonstrate, using relevant examples, the strategy for querying MongoDB (all CRUD operations)
+### Before operations
+You first open a cmd window and log in to your mongoDB with "mongod", then you open another cmd window and write "mongo".
+Inside the cmd window where you have written mongo, you then write "use db/test". You are now directly inside of you mongodb collection, here you can use the following commands
 
+### Create operations
+- For one insert
+```
+db.jokes.insertOne(
+    {
+     joke: "Can a kangaroo jump higher than a house? Of course, a house doesn’t jump at all.",
+     number: "1"
+    }
+);
+```
+- For many inserts
+```
+db.users.insertMany([
+    {
+     joke: "Can a kangaroo jump higher than a house? Of course, a house doesn’t jump at all.",
+     number: "1"
+    },
+    {
+     name: "My dog used to chase people on a bike a lot. It got so bad, finally I had to take his bike away.",
+     number: "2"
+    }
+]);
+```
+
+### Read operations
+
+### Update operations
+
+### Delete operations
 
 ## Explain about indexes in MongoDB, how to create them, and demonstrate how you have used them.
 

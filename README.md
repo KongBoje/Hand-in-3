@@ -32,6 +32,8 @@ Redis is an open source, in-memory data structure store, used as database, cache
 ## Explain reasons to add a layer like Mongoose, on top of a schema-less database like MongoDB
 The Mongoose layer adds a schema to MongoDB, which makes it much easier to handle the database.
 
+Mongoose is an ORM-like tool for MongoDB. Mongoose provides a straight-forward, schema-based solution to model your application data. It includes built-in type casting, validation, query building, business logic hooks and more, out of the box. Mongoose adds another layer of robustness on top of MongoDB. Write less code, easier to read code (object modeling) and schema validation. MongoDB is schema-less and Mongoose adds schemas. This might seem counterintuitive at first... but Real life data has (often) structure and (often) types.
+
 ## Explain, and demonstrate, using relevant examples, the strategy for querying MongoDB (all CRUD operations)
 
 

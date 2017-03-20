@@ -370,7 +370,7 @@ module.exports = JokeModel;
 
 ## Explain the benefits from using Mongoose, and demonstrate, using your own code, an example involving all CRUD operations
 Benefits are already explained in the previous question.
-- Her is a full example on a mongoose app with the CRUD operations:
+- Here is a full example on a mongoose app with the CRUD operations:
 [MongooseCRUD](https://github.com/KongBoje/Hand-in-3/tree/master/mongooseEx)
 
 ## Explain, using a relevant example, a full MEAN application (the A, can be an ionic application or replaced with an "R", for React) including relevant test cases to test the REST-API (not on the production database)

@@ -101,7 +101,56 @@ db.jokes.deleteMany([{number: "1"}, {number: "2"}]);
 ```
 
 ## Explain about indexes in MongoDB, how to create them, and demonstrate how you have used them.
+Indexes support the efficient execution of queries in MongoDB. Without indexes, MongoDB must perform a collection scan, i.e. scan every document in a collection, to select those documents that match the query statement. If an appropriate index exists for a query, MongoDB can use the index to limit the number of documents it must inspect.
 
+Indexes are special data structures that store a small portion of the collection’s data set in an easy to traverse form. The index stores the value of a specific field or set of fields, ordered by the value of the field. The ordering of the index entries supports efficient equality matches and range-based query operations. In addition, MongoDB can return sorted results by using the ordering in the index.
+
+- You can create an index like this, which is also how I have used them:
+```
+var jokes = [
+
+    {
+        "joke" : " Reality is an illusion created by a lack of alcohol",
+        "type" : ["short", "alcohol", "quote"],
+        "reference": { "author" : "Someone", "link" : ""},
+        "lastEdited" : new Date()
+    },
+    {
+        "joke" : "I used to think the brain was the most important organ. Then I thought, look whatâ€™s telling me that",
+        "type" : ["short", "joke"],
+        "reference": { "author" : "Unknown", "link" : "http://thoughtcatalog.com/christopher-hudspeth/2013/09/50-terrible-quick-jokes-thatll-get-you-a-laugh-on-demand/"},
+        "lastEdited" : new Date()
+    },
+    {
+        "joke" : "You kill vegetarian vampires with a steak to the heart",
+        "type" : ["short", "joke","foot"],
+        "reference": { "author" : "Unknown", "link" : "http://thoughtcatalog.com/christopher-hudspeth/2013/09/50-terrible-quick-jokes-thatll-get-you-a-laugh-on-demand/"},
+        "lastEdited" : new Date()
+    },
+    {
+        "joke" : "A blind man walks into a bar. And a table. And a chair",
+        "type" : ["short", "joke","blind"],
+        "reference": { "author" : "Someone", "link" : "http://thoughtcatalog.com/christopher-hudspeth/2013/09/50-terrible-quick-jokes-thatll-get-you-a-laugh-on-demand/"},
+        "lastEdited" : new Date()
+    },
+    {
+        "joke" : "How does NASA organize their company parties? They planet",
+        "type" : ["short", "joke","riddle"],
+        "reference": { "author" : "Unknown", "link" : "http://thoughtcatalog.com/christopher-hudspeth/2013/09/50-terrible-quick-jokes-thatll-get-you-a-laugh-on-demand/"},
+        "lastEdited" : new Date()
+    }
+    ,
+    {
+        "joke" : "Why was six afraid of seven? Because seven was a well known six offender",
+        "type" : ["short", "joke","riddle"],
+        "reference": { "author" : "Unknown", "link" : "http://thoughtcatalog.com/christopher-hudspeth/2013/09/50-terrible-quick-jokes-thatll-get-you-a-laugh-on-demand/"},
+        "lastEdited" : new Date()
+    }
+]
+
+var result = db.jokes.insert(jokes);
+printjson(result);
+```
 
 ## Explain, using your own code examples, how you have used some of MongoDB's "special" indexes like TTL and 2dsphere
 

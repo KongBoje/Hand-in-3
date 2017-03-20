@@ -64,6 +64,14 @@ db.jokes.insertMany([
 ```
 
 ### Read operations
+- Finds all the jokes and reads them:
+```
+db.jokes.find()
+```
+- Finds one specific joke and reads it:
+```
+db.jokes.find({joke: "Can a kangaroo jump higher than a house? Of course, a house doesn’t jump at all."})
+```
 
 ### Update operations
 

@@ -201,6 +201,127 @@ printjson(result);
 ```
 
 ## Demonstrate, using a REST-API you have designed, how to perform all CRUD operations on a MongoDB
+I have perfomed all the CRUD operations like this:
+
+### Create operations
+- Model/jokes.js
+```
+exports.addJoke = function (jokeToAdd, callback) {
+    let db = connection.get();
+    let collection = db.collection("jokes")
+
+    collection.insertOne(jokeToAdd, function (err, data) {
+        if (err) {
+            callback(err, null);
+        } else {
+            callback(data);
+        }
+    })
+};
+```
+
+- routes/allJokes.js
+```
+router.post("/addJoke", function (req, res, next) {
+    jokemodule.addJoke(req.body, function (err, data) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.json("joke added");
+        }
+    });
+});
+```
+
+### Read operations
+- Model/jokes.js
+```
+exports.findJoke = function (id, callback) {
+	let db = connection.get();
+	let collection = db.collection("jokes");
+
+	collection.findOne({"_id" : new ObjectId(id)}, (function (err,data){
+        assert.equal(err,null);
+        callback(data);
+    }));
+};
+```
+
+- routes/allJokes.js
+```
+router.get('/findJoke/:id', (req, res, next) => {
+    let id = req.params.id;
+    jokemodule.findById({ _id: ObjectId(id) }, (err, data) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.json(data);
+        }
+    });
+});
+```
+
+
+### Update operations
+- Model/jokes.js
+```
+exports.editJoke = function (id, jokeToEdit, callback) {
+    let db = connection.get();
+    let collection = db.collection("jokes")
+
+    collection.replaceOne({"_id": new ObjectId(id)}, jokeToEdit, function (err, data) {
+        if(err) {
+            callback(err);
+        } else {
+            callback("Joke edited" + data);
+        }
+    })
+};
+```
+
+- routes/allJokes.js
+```
+router.put("/editJoke/:id", function (req, res, next) {
+    jokemodule.editJoke(req.params.id, req.body, function (err, data) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.json({ editedJoke: data })
+        }
+    })
+});
+```
+
+
+### Delete operations
+- Model/jokes.js
+```
+exports.deleteJoke = function (id, callback) {
+    let db = connection.get();
+    let collection = db.collection("jokes")
+
+    collection.deleteOne({"_id": new ObjectId(id)}, function (err, data) {
+        if(err) {
+            callback(err);
+        } else {
+            callback("Joke deleted" + data);
+        }
+    })
+};
+```
+
+- routes/allJokes.js
+```
+router.delete('/deleteJoke/:id', (req, res, next) => {
+    jokemodule.deleteJoke(req.params.id, (err, data) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.json(data);
+        }
+    })
+});
+```
 
 
 ## Explain reasons to add a layer like Mongoose, on top on of a schema-less database like MongoDB

@@ -66,16 +66,39 @@ db.jokes.insertMany([
 ### Read operations
 - Finds all the jokes and reads them:
 ```
-db.jokes.find()
+db.jokes.find();
 ```
 - Finds one specific joke and reads it:
 ```
-db.jokes.find({joke: "Can a kangaroo jump higher than a house? Of course, a house doesn’t jump at all."})
+db.jokes.find({joke: "Can a kangaroo jump higher than a house? Of course, a house doesn’t jump at all."});
 ```
 
 ### Update operations
+- Updates one specific joke:
+```
+db.jokes.update(
+  { joke: "Can a kangaroo jump higher than a house? Of course, a house doesn’t jump at all.", number: "1" },
+  { $set: { "number": "3" } }
+);
+```
+- updates many jokes with the (multi: true) command. This operation updates all documents that have joke fields equal to "Can a kangaroo jump higher than a house? Of course, a house doesn’t jump at all." and cuisine field equal to "1":
+```
+db.jokes.update(
+  { joke: "Can a kangaroo jump higher than a house? Of course, a house doesn’t jump at all.", number: "1" },
+  { $set: { "number": "3" } },
+  { multi: true }
+);
+```
 
 ### Delete operations
+- Deletes one specific joke:
+```
+db.jokes.deleteOne({joke: "Can a kangaroo jump higher than a house? Of course, a house doesn’t jump at all."});
+```
+- Deletes many jokes:
+```
+db.jokes.deleteMany([{number: "1"}, {number: "2"}]);
+```
 
 ## Explain about indexes in MongoDB, how to create them, and demonstrate how you have used them.
 

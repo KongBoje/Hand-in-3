@@ -51,7 +51,7 @@ db.jokes.insertOne(
 ```
 - For many inserts
 ```
-db.users.insertMany([
+db.jokes.insertMany([
     {
      joke: "Can a kangaroo jump higher than a house? Of course, a house doesn’t jump at all.",
      number: "1"

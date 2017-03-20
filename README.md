@@ -329,7 +329,8 @@ Adding a mongoose layer to the MongoDB adds a schema to your collection, which m
 - Real life data (often) has structure
 - Real life data (often) has types
 - We want to do more with less work
-- Basically
+
+Mongoose is an ORM-like tool for MongoDB. Mongoose provides a straight-forward, schema-based solution to model your application data. It includes built-in type casting, validation, query building, business logic hooks and more, out of the box. Mongoose adds another layer of robustness on top of MongoDB. Write less code, easier to read code (object modeling) and schema validation. MongoDB is schema-less and Mongoose adds schemas. This might seem counterintuitive at first but Real life data has (often) structure and (often) types.
 
 ## Explain the benefits from using Mongoose, and provide an example involving all CRUD operations
 Mongoose provides a straight-forward, schema-based solution to modeling your application data and includes, out of the box:
@@ -341,12 +342,37 @@ Mongoose provides a straight-forward, schema-based solution to modeling your app
 
 #### Schema example
 Everything in Mongoose starts with a Schema. Each schema maps to a MongoDB collection and defines the shape of the documents within that collection.
-- created isn't needed.
 ```
+'use strict'
 
+let mongoose = require("mongoose");
+
+var JokeSchema = new mongoose.Schema(
+    {
+        joke: {type: String, required: true, minlength: 5},
+        category: [String],
+        reference: {author: String, link: String},
+        lastEdited: {type: Date, default: Date.now}
+    }
+);
+
+JokeSchema.pre('save', function(next){
+    this.lastEdited = new Date();
+    next();
+});
+
+
+let JokeModel= mongoose.model("Joke",JokeSchema);
+module.exports = JokeModel;
 ```
+- CRUD example with mongoose
+[CRUD example](https://github.com/KongBoje/Hand-in-3/blob/master/mongooseEx/api/api.js)
 
 ## Explain the benefits from using Mongoose, and demonstrate, using your own code, an example involving all CRUD operations
-
+Benefits are already explained in the previous question.
+- Her is a full example on a mongoose app with the CRUD operations:
+[MongooseCRUD](https://github.com/KongBoje/Hand-in-3/tree/master/mongooseEx)
 
 ## Explain, using a relevant example, a full MEAN application (the A, can be an ionic application or replaced with an "R", for React) including relevant test cases to test the REST-API (not on the production database)
+I have made a full MEAN application with both tests passing and the angular front-end(maybe later to become React) here:
+[MEAN Application](https://github.com/KongBoje/Hand-in-3/tree/master/mongooseEx)

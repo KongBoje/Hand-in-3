@@ -105,55 +105,28 @@ Indexes support the efficient execution of queries in MongoDB. Without indexes, 
 
 Indexes are special data structures that store a small portion of the collection’s data set in an easy to traverse form. The index stores the value of a specific field or set of fields, ordered by the value of the field. The ordering of the index entries supports efficient equality matches and range-based query operations. In addition, MongoDB can return sorted results by using the ordering in the index.
 
-- You can create an index like this, which is also how I have used them:
+- You can create an index like this,
 ```
-var jokes = [
+db.collection.createIndex( <key and index type specification>, <options> )
+```
+- I guess this is how I have used it in the code, which is I sort of create an index in the collection when I create a joke(db.collection("jokes").insertOne():
+```
+exports.addJoke = function (jokeToAdd, callback) {
+    let db = connection.get();
+    let collection = db.collection("jokes")
 
-    {
-        "joke" : " Reality is an illusion created by a lack of alcohol",
-        "type" : ["short", "alcohol", "quote"],
-        "reference": { "author" : "Someone", "link" : ""},
-        "lastEdited" : new Date()
-    },
-    {
-        "joke" : "I used to think the brain was the most important organ. Then I thought, look whatâ€™s telling me that",
-        "type" : ["short", "joke"],
-        "reference": { "author" : "Unknown", "link" : "http://thoughtcatalog.com/christopher-hudspeth/2013/09/50-terrible-quick-jokes-thatll-get-you-a-laugh-on-demand/"},
-        "lastEdited" : new Date()
-    },
-    {
-        "joke" : "You kill vegetarian vampires with a steak to the heart",
-        "type" : ["short", "joke","foot"],
-        "reference": { "author" : "Unknown", "link" : "http://thoughtcatalog.com/christopher-hudspeth/2013/09/50-terrible-quick-jokes-thatll-get-you-a-laugh-on-demand/"},
-        "lastEdited" : new Date()
-    },
-    {
-        "joke" : "A blind man walks into a bar. And a table. And a chair",
-        "type" : ["short", "joke","blind"],
-        "reference": { "author" : "Someone", "link" : "http://thoughtcatalog.com/christopher-hudspeth/2013/09/50-terrible-quick-jokes-thatll-get-you-a-laugh-on-demand/"},
-        "lastEdited" : new Date()
-    },
-    {
-        "joke" : "How does NASA organize their company parties? They planet",
-        "type" : ["short", "joke","riddle"],
-        "reference": { "author" : "Unknown", "link" : "http://thoughtcatalog.com/christopher-hudspeth/2013/09/50-terrible-quick-jokes-thatll-get-you-a-laugh-on-demand/"},
-        "lastEdited" : new Date()
-    }
-    ,
-    {
-        "joke" : "Why was six afraid of seven? Because seven was a well known six offender",
-        "type" : ["short", "joke","riddle"],
-        "reference": { "author" : "Unknown", "link" : "http://thoughtcatalog.com/christopher-hudspeth/2013/09/50-terrible-quick-jokes-thatll-get-you-a-laugh-on-demand/"},
-        "lastEdited" : new Date()
-    }
-]
-
-var result = db.jokes.insert(jokes);
-printjson(result);
+    collection.insertOne(jokeToAdd, function (err, data) {
+        if (err) {
+            callback(err, null);
+        } else {
+            callback(data);
+        }
+    })
+};
 ```
 
 ## Explain, using your own code examples, how you have used some of MongoDB's "special" indexes like TTL and 2dsphere
-As shown in the previous question I have used MongoDB's special indexes to create some jokes in my "test" collection. I guess it is more like 2dSphere than TTL 
+I have used MongoDB's special indexes to create some jokes in my "test" collection. I guess it is more like 2dSphere than TTL, don't know if this is right.
 ```
 var jokes = [
 

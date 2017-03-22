@@ -346,6 +346,15 @@ Benefits are already explained in the previous question.
 - Here is a full example on a mongoose app with the CRUD operations:
 [MongooseCRUD](https://github.com/KongBoje/Hand-in-3/tree/master/mongooseEx)
 
+## Explain how redis "fits" into the NoSQL world, and provide an example of how you have used it.
+Redis is very fast, but the API is very 'atomic'. MongoDB will eat more resources, but the API is very very easy to use.
+
+For example, if you require a lot of querying, that mostly means it would be more work for your developers to use Redis, where your data might be stored in variety of specialized data structures, customized for each type of object for efficiency. In MongoDB the same queries might be easier because the structure is more consistent across your data. On the other hand, in Redis, sheer speed of the response to those queries is the payoff for the extra work of dealing with the variety of structures your data might be stored with.
+
+MongoDB offers simplicity, much shorter learning curve for developers with traditional DB and SQL experience. However, Redis's non-traditional approach requires more effort to learn, but greater flexibility.
+
+- I don't think we have really used redis in this period.
+
 ## Explain, using a relevant example, a full MEAN application (the A, can be an ionic application or replaced with an "R", for React) including relevant test cases to test the REST-API (not on the production database)
 I have made a full MEAN application with both tests passing and the angular front-end(maybe later to become React) here:
 [MEAN Application](https://github.com/KongBoje/Hand-in-3/tree/master/mongooseEx)

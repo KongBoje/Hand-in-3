@@ -1,14 +1,14 @@
-># Hand-in-3, No-SQL
+# Hand-in-3, No-SQL
 
 # Explain and Reflect
-## Explain, generally, what is meant by a NoSQL database.
+>## Explain, generally, what is meant by a NoSQL database.
 NoSQL database, also called Not Only SQL, is an approach to data management and database design that's useful for very large sets of distributed data.
 
 NoSQL, which encompasses a wide range of technologies and architectures, seeks to solve the scalability and big data performance issues that relational databases weren’t designed to address. NoSQL is especially useful when an enterprise needs to access and analyze massive amounts of unstructured data or data that's stored remotely on multiple virtual servers in the cloud.
 
 Companies that use NoSQL include NetFlix, LinkedIn and Twitter.
 
-## Explain Pros & Cons in using a NoSQL database like MongoDB as your data store, compared to a traditional Relational SQL Database like MySQL.
+>## Explain Pros & Cons in using a NoSQL database like MongoDB as your data store, compared to a traditional Relational SQL Database like MySQL.
 
 ### Pros
 - Simplicity of design. (data does not have to be normalized. Just save everything you need, in a document, for a specific domain. Like db or test)
@@ -22,19 +22,19 @@ Companies that use NoSQL include NetFlix, LinkedIn and Twitter.
 - it lacks huge previous investments in existing relational databases.
 
 
-## Explain how databases like MongoDB and redis would be classified in the NoSQL world
+>## Explain how databases like MongoDB and redis would be classified in the NoSQL world
 ### MongoDB
 Is a document oriented database. Documents are independent units which makes performance better (data is read contiguously off disk) and makes it easier to distribute data across multiple servers while preserving its locality. Application logic is easier to write. No need to translate between objects in your application and SQL queries, you can just turn the object model directly into a document. (sure, but you have ORM with SQL) Unstructured data can be stored easily, since a document contains whatever keys and values the application logic requires.
 
 ### redis
 Redis is an open source, in-memory data structure store, used as database, cache and message broker. It supports data structures such as strings, hashes, lists, sets, sorted sets with range queries, bitmaps, hyperloglogs and geospatial indexes with radius queries. Basically key/value storage. Redis typically holds the whole dataset in memory, and saves to disk every two seconds.
 
-## Explain reasons to add a layer like Mongoose, on top of a schema-less database like MongoDB
+>## Explain reasons to add a layer like Mongoose, on top of a schema-less database like MongoDB
 The Mongoose layer adds a schema to MongoDB, which makes it much easier to handle the database.
 
 Mongoose is an ORM-like tool for MongoDB. Mongoose provides a straight-forward, schema-based solution to model your application data. It includes built-in type casting, validation, query building, business logic hooks and more, out of the box. Mongoose adds another layer of robustness on top of MongoDB. Write less code, easier to read code (object modeling) and schema validation. MongoDB is schema-less and Mongoose adds schemas. This might seem counterintuitive at first... but Real life data has (often) structure and (often) types.
 
-## Explain, and demonstrate, using relevant examples, the strategy for querying MongoDB (all CRUD operations)
+>## Explain, and demonstrate, using relevant examples, the strategy for querying MongoDB (all CRUD operations)
 ### Before operations
 You first open a cmd window and log in to your mongoDB with "mongod", then you open another cmd window and write "mongo".
 Inside the cmd window where you have written mongo, you then write "use db/test". You are now directly inside of you mongodb collection, here you can use the following commands
@@ -100,7 +100,7 @@ db.jokes.deleteOne({joke: "Can a kangaroo jump higher than a house? Of course, a
 db.jokes.deleteMany([{number: "1"}, {number: "2"}]);
 ```
 
-## Explain about indexes in MongoDB, how to create them, and demonstrate how you have used them.
+>## Explain about indexes in MongoDB, how to create them, and demonstrate how you have used them.
 Indexes support the efficient execution of queries in MongoDB. Without indexes, MongoDB must perform a collection scan, i.e. scan every document in a collection, to select those documents that match the query statement. If an appropriate index exists for a query, MongoDB can use the index to limit the number of documents it must inspect.
 
 Indexes are special data structures that store a small portion of the collection’s data set in an easy to traverse form. The index stores the value of a specific field or set of fields, ordered by the value of the field. The ordering of the index entries supports efficient equality matches and range-based query operations. In addition, MongoDB can return sorted results by using the ordering in the index.
@@ -125,7 +125,7 @@ exports.addJoke = function (jokeToAdd, callback) {
 };
 ```
 
-## Explain, using your own code examples, how you have used some of MongoDB's "special" indexes like TTL and 2dsphere
+>## Explain, using your own code examples, how you have used some of MongoDB's "special" indexes like TTL and 2dsphere
 I have used MongoDB's special indexes to create some jokes in my "test" collection. I guess it is more like 2dSphere than TTL, don't know if this is right.
 ```
 var jokes = [
@@ -173,7 +173,7 @@ var result = db.jokes.insert(jokes);
 printjson(result);
 ```
 
-## Demonstrate, using a REST-API you have designed, how to perform all CRUD operations on a MongoDB
+>## Demonstrate, using a REST-API you have designed, how to perform all CRUD operations on a MongoDB
 I have perfomed all the CRUD operations like this:
 
 ### Create operations
@@ -297,7 +297,7 @@ router.delete('/deleteJoke/:id', (req, res, next) => {
 ```
 
 
-## Explain reasons to add a layer like Mongoose, on top on of a schema-less database like MongoDB
+>## Explain reasons to add a layer like Mongoose, on top on of a schema-less database like MongoDB
 Adding a mongoose layer to the MongoDB adds a schema to your collection, which makes it less messy.
 - Real life data (often) has structure
 - Real life data (often) has types
@@ -305,7 +305,7 @@ Adding a mongoose layer to the MongoDB adds a schema to your collection, which m
 
 Mongoose is an ORM-like tool for MongoDB. Mongoose provides a straight-forward, schema-based solution to model your application data. It includes built-in type casting, validation, query building, business logic hooks and more, out of the box. Mongoose adds another layer of robustness on top of MongoDB. Write less code, easier to read code (object modeling) and schema validation. MongoDB is schema-less and Mongoose adds schemas. This might seem counterintuitive at first but Real life data has (often) structure and (often) types.
 
-## Explain the benefits from using Mongoose, and provide an example involving all CRUD operations
+>## Explain the benefits from using Mongoose, and provide an example involving all CRUD operations
 Mongoose provides a straight-forward, schema-based solution to modeling your application data and includes, out of the box:
 - Schemas
 - built-in type casting
@@ -341,12 +341,12 @@ module.exports = JokeModel;
 - CRUD example with mongoose
 [CRUD example](https://github.com/KongBoje/Hand-in-3/blob/master/mongooseEx/api/api.js)
 
-## Explain the benefits from using Mongoose, and demonstrate, using your own code, an example involving all CRUD operations
+>## Explain the benefits from using Mongoose, and demonstrate, using your own code, an example involving all CRUD operations
 Benefits are already explained in the previous question.
 - Here is a full example on a mongoose app with the CRUD operations:
 [MongooseCRUD](https://github.com/KongBoje/Hand-in-3/tree/master/mongooseEx)
 
-## Explain how redis "fits" into the NoSQL world, and provide an example of how you have used it.
+>## Explain how redis "fits" into the NoSQL world, and provide an example of how you have used it.
 Redis is very fast, but the API is very 'atomic'. MongoDB will eat more resources, but the API is very very easy to use.
 
 For example, if you require a lot of querying, that mostly means it would be more work for your developers to use Redis, where your data might be stored in variety of specialized data structures, customized for each type of object for efficiency. In MongoDB the same queries might be easier because the structure is more consistent across your data. On the other hand, in Redis, sheer speed of the response to those queries is the payoff for the extra work of dealing with the variety of structures your data might be stored with.
@@ -355,6 +355,6 @@ MongoDB offers simplicity, much shorter learning curve for developers with tradi
 
 - I don't think we have really used redis in this period.
 
-## Explain, using a relevant example, a full MEAN application (the A, can be an ionic application or replaced with an "R", for React) including relevant test cases to test the REST-API (not on the production database)
+>## Explain, using a relevant example, a full MEAN application (the A, can be an ionic application or replaced with an "R", for React) including relevant test cases to test the REST-API (not on the production database)
 I have made a full MEAN application with both tests passing and the angular front-end(maybe later to become React) here:
 [MEAN Application](https://github.com/KongBoje/Hand-in-3/tree/master/mongooseEx)

@@ -173,6 +173,26 @@ var result = db.jokes.insert(jokes);
 printjson(result);
 ```
 
+ok Har jeg ikke, men 2dsphere ser sådan her ud f.eks(simpelt):
+```javascript
+create 2dsphere:
+db.collection.createIndex( { <location field> : "2dsphere" } )
+
+insert data in 2dsphere:
+db.places.insert(
+   {
+      loc : { type: "Point", coordinates: [ -73.97, 40.77 ] },
+      name: "Central Park",
+      category : "Parks"
+   }
+)
+```
+
+TTL eksempel(simpelt):
+```javascript
+db.eventlog.createIndex( { "lastModifiedDate": 1 }, { expireAfterSeconds: 3600 } )
+```
+
 >## Demonstrate, using a REST-API you have designed, how to perform all CRUD operations on a MongoDB
 I have perfomed all the CRUD operations like this:
 
